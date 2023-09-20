@@ -1,22 +1,22 @@
 <template>
-  <!-- <el-row class="mb-4">
-    <el-button @click="handleSubmit">Default</el-button>
+  <el-row class="mb-4">
+    <el-button a="1" b="2" c="23" d="32313" f="1213" @click="handleSubmit"> Default </el-button>
     <el-button type="primary">Primary</el-button>
     <el-button type="success">Success</el-button>
     <el-button type="info">Info</el-button>
     <el-button type="warning">Warning</el-button>
-    <el-button type="danger">Danger</el-button>
+    <el-button type="danger">Danger </el-button>
   </el-row>
 
-  <el-divider /> -->
+  <el-divider />
 
-  <a-space wrap>
-    <a-button type="primary" @click="handleSubmit">Primary Button</a-button>
-    <a-button>Default Button</a-button>
-    <a-button type="dashed">Dashed Button</a-button>
-    <a-button type="text">Text Button</a-button>
-    <a-button type="link">Link Button</a-button>
-  </a-space>
+  <el-scrollbar>
+    <div class="scrollbar-flex-content">
+      <p v-for="item in 50" class="scrollbar-demo-item" :key="item">
+        {{ item }}
+      </p>
+    </div>
+  </el-scrollbar>
 </template>
 
 <script setup>
@@ -29,4 +29,22 @@ const handleSubmit = () => {
 }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.scrollbar-flex-content {
+  display: flex;
+}
+
+.scrollbar-demo-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 50px;
+  margin: 10px;
+  text-align: center;
+  border-radius: 4px;
+  background: var(--el-color-danger-light-9);
+  color: var(--el-color-danger);
+}
+</style>
