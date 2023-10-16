@@ -10,10 +10,18 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  // 拓展
-  extends: ['plugin:vue/essential', 'airbnb-base', 'plugin:prettier/recommended'], // 使用airbnb规范
+
+  /* 拓展 */
+  // 使用airbnb规范
+  extends: [
+    'plugin:vite/recommended',
+    'plugin:vue/essential',
+    'airbnb-base',
+    'plugin:prettier/recommended'
+  ],
+
   // 插件
-  plugins: ['vue', 'vue-scoped-css'],
+  plugins: ['vue', 'vue-scoped-css', 'vite'],
 
   settings: {
     // 解决后缀忽略不识别问题
@@ -30,8 +38,14 @@ module.exports = {
     'vue/comment-directive': 'off', // 支持在模版中使用 eslint-disable-next-line 等注释
     'vue/no-multiple-template-root': 'off', // 关闭多根节点检测
     'vue/multi-word-component-names': 'off', // 关闭单文件组件名必须多个单词的限制
+
     /* css */
     'vue-scoped-css/require-scoped': 'error', // 确保 scoped 样式的正确使用
+
+    /* JS */
+    'no-console': 'warn', // 打印警告
+    'no-restricted-syntax': 'off', // 关闭禁用for-in for-of的规则
+
     /* another */
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }], // 关闭错误提示开发依赖需安装为生产依赖
     // 解决无法识别vite别名导致的错误
