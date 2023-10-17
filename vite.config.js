@@ -22,14 +22,13 @@ export default ({ mode }) => {
         resolvers: [ElementPlusResolver()]
       })
     ],
-
     resolve: {
       // 别名
       alias: {
         '@': path.resolve(__dirname, 'src'),
         '@img': path.resolve(__dirname, 'src/assets/images/')
       },
-      extensions: ['.vue', '.js', '.mjs', '.ts', '.jsx', '.tsx', '.json'] // 文件后缀拓展
+      extensions: ['.js', '.mjs', '.ts', '.jsx', '.tsx', '.json', '.vue'] // 文件后缀拓展
     },
 
     // 本地服务

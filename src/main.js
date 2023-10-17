@@ -1,6 +1,9 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import AppVue from './App.vue'
+import EnumPlugin from './enums'
 
-const app = createApp(App)
+const app = createApp(AppVue)
+
+app.use(EnumPlugin)
 
 app.mount('#app')

@@ -20,12 +20,14 @@
 </template>
 
 <script setup>
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance, inject } from 'vue'
 
 const { proxy } = getCurrentInstance()
+const enums = inject('$enums')
 
 const handleSubmit = () => {
   console.log('proxy: ', proxy)
+  console.log('enums: ', enums)
 }
 </script>
 
