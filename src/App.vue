@@ -1,6 +1,9 @@
 <template>
   <el-row class="mb-4">
-    <el-button a="1" b="2" c="23" d="32313" f="1213" @click="handleSubmit"> Default </el-button>
+    <el-icon :size="20">
+      <Edit />
+    </el-icon>
+    <el-button @click="handleSubmit"> Default </el-button>
     <el-button type="primary">Primary</el-button>
     <el-button type="success">Success</el-button>
     <el-button type="info">Info</el-button>
@@ -20,14 +23,18 @@
 </template>
 
 <script setup>
-import { getCurrentInstance, inject } from 'vue'
+import { useDark, useToggle } from '@vueuse/core'
 
-const { proxy } = getCurrentInstance()
-const enums = inject('$enums')
+const isDark = useDark({
+  selector: 'body',
+  attribute: 'class',
+  valueDark: 'dark',
+  valueLight: 'light'
+})
+const toggleDark = useToggle(isDark)
 
 const handleSubmit = () => {
-  console.log('proxy: ', proxy)
-  console.log('enums: ', enums)
+  toggleDark(isDark)
 }
 </script>
 

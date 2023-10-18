@@ -12,7 +12,6 @@ module.exports = {
   },
 
   /* 拓展 */
-  // 使用airbnb规范
   extends: [
     'plugin:import/recommended',
     'plugin:vue/vue3-recommended',
@@ -28,7 +27,14 @@ module.exports = {
     'import/resolver': {
       node: {
         moduleDirectory: ['node_modules', 'src'],
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.mjs', '.cjs']
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', '.json', '.scss']
+      },
+      alias: {
+        map: [
+          ['@', './src'],
+          ['@img', './src/assets/images/']
+        ],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', '.scss']
       }
     }
   },
@@ -47,17 +53,28 @@ module.exports = {
     'no-console': 'warn', // 打印警告
     'no-restricted-syntax': 'off', // 关闭禁用for-in for-of的规则
     'no-param-reassign': ['error', { props: false }], // 关闭禁止直接修改函数的入参
-
-    /* another */
-    'import/prefer-default-export': 'off', // 关闭推荐export default
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }], // 关闭错误提示开发依赖需安装为生产依赖
-    // 解决无法识别vite别名导致的错误
-    'import/no-unresolved': [
+    // 对象强制解构、数组不强制
+    'prefer-destructuring': [
       'error',
       {
-        ignore: ['^@', 'unplugin-auto', 'unplugin-vue']
+        VariableDeclarator: {
+          array: false,
+          object: true
+        },
+        AssignmentExpression: {
+          array: false,
+          object: false
+        }
+      },
+      {
+        enforceForRenamedProperties: false
       }
     ],
+
+    /* another */
+    // 关闭错误提示开发依赖需安装为生产依赖
+    'import/prefer-default-export': 'off', // 关闭推荐export default
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }], // 关闭错误提示开发依赖需安装为生产依赖
 
     // 解决后缀忽略不识别问题
     'import/extensions': [
@@ -66,7 +83,9 @@ module.exports = {
         js: 'never',
         jsx: 'never',
         ts: 'never',
-        tsx: 'never'
+        tsx: 'never',
+        vue: 'always',
+        scss: 'always'
       }
     ]
   }
