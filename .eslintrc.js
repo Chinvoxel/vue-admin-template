@@ -49,7 +49,7 @@ module.exports = {
     'no-param-reassign': ['error', { props: false }], // 关闭禁止直接修改函数的入参
 
     /* another */
-    'import/prefer-default-export': 'off',
+    'import/prefer-default-export': 'off', // 关闭推荐export default
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }], // 关闭错误提示开发依赖需安装为生产依赖
     // 解决无法识别vite别名导致的错误
     'import/no-unresolved': [

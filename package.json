@@ -3,15 +3,18 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@babel/plugin-transform-optional-chaining": "^7.23.0",
     "element-plus": "^2.3.9",
     "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
     "@vitejs/plugin-vue": "^4.3.3",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.47.0",
