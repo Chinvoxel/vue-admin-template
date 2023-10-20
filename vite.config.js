@@ -13,7 +13,7 @@ export default ({ mode }) => {
   const env = loadEnv(mode, process.cwd())
 
   return defineConfig({
-    base: env.VITE_APP_BASE_API, // 开发或生产环境服务的公共基础路径
+    base: env.VITE_APP_PUBLIC_PATH, // 开发或生产环境服务的公共基础路径
     plugins: [
       vue(),
       // 自动导入 JavaScript 模块插件
@@ -64,7 +64,7 @@ export default ({ mode }) => {
       proxy: {
         '/api': {
           target: env.VITE_APP_SERVER_API, // 使用环境变量
-          changeOrigin: true,
+          changeOrigin: true, // 开启跨域
           rewrite: paths => paths.replace(/^\/api/, '')
         }
       }

@@ -12,12 +12,7 @@ module.exports = {
   },
 
   /* 拓展 */
-  extends: [
-    'plugin:import/recommended',
-    'plugin:vue/vue3-recommended',
-    'airbnb-base',
-    'plugin:prettier/recommended'
-  ],
+  extends: ['plugin:import/recommended', 'plugin:vue/vue3-recommended', 'airbnb-base', 'plugin:prettier/recommended'],
 
   // 插件
   plugins: ['vue', 'vue-scoped-css', 'eslint-plugin-import'],
@@ -50,9 +45,10 @@ module.exports = {
     'vue-scoped-css/require-scoped': 'error', // 确保 scoped 样式的正确使用
 
     /* JS */
-    'no-console': 'warn', // 打印警告
+    'no-console': 'off', // 打印警告
     'no-restricted-syntax': 'off', // 关闭禁用for-in for-of的规则
     'no-param-reassign': ['error', { props: false }], // 关闭禁止直接修改函数的入参
+    'no-underscore-dangle': 'off', // 关闭不允许下划线做前缀
     // 对象强制解构、数组不强制
     'prefer-destructuring': [
       'error',
@@ -72,10 +68,9 @@ module.exports = {
     ],
 
     /* another */
-    // 关闭错误提示开发依赖需安装为生产依赖
     'import/prefer-default-export': 'off', // 关闭推荐export default
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }], // 关闭错误提示开发依赖需安装为生产依赖
-
+    'import/no-extraneous-dependencies': ['off', { devDependencies: true }], // 关闭错误提示开发依赖需安装为生产依赖
+    'import/no-cycle': 'off', // 循环依赖检测
     // 解决后缀忽略不识别问题
     'import/extensions': [
       'error',
