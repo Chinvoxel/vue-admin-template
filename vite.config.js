@@ -18,6 +18,7 @@ export default ({ mode }) => {
       vue(),
       // 自动导入 JavaScript 模块插件
       AutoImport({
+        imports: ['vue', 'vue-router', '@vueuse/core'],
         resolvers: [
           IconsResolver({
             prefix: 'Icon'
@@ -35,7 +36,8 @@ export default ({ mode }) => {
         ]
       }),
       Icons({
-        autoInstall: true
+        autoInstall: true,
+        compiler: 'vue3'
       })
     ],
 

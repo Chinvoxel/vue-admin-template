@@ -5,7 +5,7 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import router from '@/router'
 import { getToken } from '@/utils/token'
-import useUserStore from '@/store/user'
+import { useUserStore } from '@/store/user'
 
 // NProgress 配置
 NProgress.configure({
@@ -41,9 +41,15 @@ instance.interceptors.response.use(
     const message = res.data.message || '未知错误'
     // 如果是401则跳转到登录页面
     if (status === 401) {
+      ElMessage.error('当前登录已失效，请重新登录')
       const store = useUserStore()
       store.FedLogout().then(() => {
-        router.push({ path: '/login' })
+        router.replace({
+          name: 'Login',
+          query: {
+            redirect: router.currentRoute.fullPath
+          }
+        })
       })
     }
     // 状态码非200则弹窗提示

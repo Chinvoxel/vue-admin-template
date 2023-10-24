@@ -1,17 +1,14 @@
 import { createApp } from 'vue'
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import EnumPlugin from '@/enums'
-import router from '@/router'
 import pinia from '@/store'
+
+import router from '@/router'
+import '@/router/interceptor'
 
 import './styles/index.scss'
 import App from './App.vue'
 
 const app = createApp(App)
-// element icon 引入
-for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component)
-}
 
 app.config.performance = true // 性能分析
 

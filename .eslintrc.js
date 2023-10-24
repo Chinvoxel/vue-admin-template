@@ -10,10 +10,8 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-
   /* 拓展 */
   extends: ['plugin:import/recommended', 'plugin:vue/vue3-recommended', 'airbnb-base', 'plugin:prettier/recommended'],
-
   // 插件
   plugins: ['vue', 'vue-scoped-css', 'eslint-plugin-import'],
 

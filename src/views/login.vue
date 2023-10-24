@@ -21,7 +21,8 @@
 </template>
 
 <script setup>
-import useUserStore from '@/store/user'
+import { useUserStore } from '@/store/user'
+import { ElMessage } from 'element-plus'
 import { computed, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -49,7 +50,8 @@ const handleSubmit = formEl => {
   formEl.validate(valid => {
     if (valid) {
       store.LoginByPhone(form).then(() => {
-        router.push({ path: toRoutePath })
+        ElMessage.success('登录成功')
+        router.replace({ path: toRoutePath.value })
       })
     }
   })

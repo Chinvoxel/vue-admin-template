@@ -4,7 +4,7 @@ specifiers:
   '@babel/core': ^7.23.2
   '@babel/plugin-transform-optional-chaining': ^7.23.0
   '@babel/preset-env': ^7.23.2
-  '@element-plus/icons-vue': ^2.1.0
+  '@iconify-json/ep': ^1.1.12
   '@vitejs/plugin-vue': ^4.3.3
   '@vueuse/core': ^10.5.0
   axios: ^1.5.1
@@ -36,7 +36,6 @@ specifiers:
 
 dependencies:
   '@babel/plugin-transform-optional-chaining': registry.npmmirror.com/@babel/plugin-transform-optional-chaining/7.23.0_@babel+core@7.23.2
-  '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue/2.1.0_vue@3.3.4
   axios: registry.npmmirror.com/axios/1.5.1
   crypto-js: registry.npmmirror.com/crypto-js/4.1.1
   element-plus: registry.npmmirror.com/element-plus/2.3.9_vue@3.3.4
@@ -49,6 +48,7 @@ dependencies:
 devDependencies:
   '@babel/core': registry.npmmirror.com/@babel/core/7.23.2
   '@babel/preset-env': registry.npmmirror.com/@babel/preset-env/7.23.2_@babel+core@7.23.2
+  '@iconify-json/ep': registry.npmmirror.com/@iconify-json/ep/1.1.12
   '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/4.3.3_vite@4.4.9+vue@3.3.4
   '@vueuse/core': registry.npmmirror.com/@vueuse/core/10.5.0_vue@3.3.4
   babel-eslint: registry.npmmirror.com/babel-eslint/10.1.0_eslint@8.47.0
@@ -1874,6 +1874,14 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz}
     name: '@humanwhocodes/object-schema'
     version: 1.2.1
+    dev: true
+
+  registry.npmmirror.com/@iconify-json/ep/1.1.12:
+    resolution: {integrity: sha512-UnWhRfcGzB9daN5pL9hkq/sWZB9FMPAVo9VKhN/Qf3//CrBNwh8r9hSPW3WTrJO2NKGpTzlIFTvrfHdbhFH3Jg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@iconify-json/ep/-/ep-1.1.12.tgz}
+    name: '@iconify-json/ep'
+    version: 1.1.12
+    dependencies:
+      '@iconify/types': registry.npmmirror.com/@iconify/types/2.0.0
     dev: true
 
   registry.npmmirror.com/@iconify/types/2.0.0:

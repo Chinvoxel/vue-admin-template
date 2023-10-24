@@ -7,8 +7,8 @@ import request from '@/request'
  */
 export function loginByPhone({ phone, password }) {
   return request({
-    url: '/api/oauth/login',
-    methods: 'POST',
+    url: '/api/user/login',
+    method: 'POST',
     data: {
       phone,
       password
@@ -22,6 +22,6 @@ export function loginByPhone({ phone, password }) {
 export function logout() {
   return request({
     url: '/api/oauth/logout',
-    methods: 'POST'
+    method: 'POST'
   })
 }
