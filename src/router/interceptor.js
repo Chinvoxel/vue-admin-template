@@ -2,6 +2,7 @@ import { ElMessage } from 'element-plus'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { getToken } from '@/utils/token'
+import website from '@/config/website'
 import router from '.'
 
 router.beforeEach(to => {
@@ -28,6 +29,9 @@ router.beforeEach(to => {
 
 router.afterEach(() => {
   NProgress.done()
+  const currentRoute = router.currentRoute.value
+  const { title } = currentRoute.meta
+  document.title = title === '404' ? title : `${website.title}-${title}`
 })
 
 // 路由错误捕获

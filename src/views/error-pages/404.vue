@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="not-found typed-out">404 Not Found Please Call Me +15949543865</div>
+    <div class="not-found typed-out">404 Not Found</div>
   </div>
 </template>
 
@@ -15,9 +15,8 @@
   line-height: 1.3;
   color: #ffffff;
   background: #111112;
-  font-family: PPSupplySansRegular;
   .not-found {
-    max-width: 730px;
+    max-width: 550px;
     letter-spacing: 3px;
     word-break: break-all;
   }
@@ -38,7 +37,7 @@
     width: 0;
   }
   to {
-    width: 730px;
+    width: 550px;
   }
 }
 
