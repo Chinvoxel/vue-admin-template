@@ -5,7 +5,7 @@ import { getToken } from '@/utils/token'
 import website from '@/config/website'
 import router from '.'
 
-router.beforeEach(to => {
+router.beforeEach((to, from) => {
   NProgress.start()
   const hasToken = !!getToken()
   const isLogin = to.name === 'Login'
@@ -20,7 +20,9 @@ router.beforeEach(to => {
 
   // 如果尚未登录，且访问页面非登录页
   if (!isLogin) {
-    ElMessage.warning('当前登陆已过期，请重新登录!')
+    if (from.name !== 'Login') {
+      ElMessage.warning('当前登陆已过期，请重新登录!')
+    }
     return { name: 'Login', params: { redirect: to.path } }
   }
 

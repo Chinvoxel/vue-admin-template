@@ -47,23 +47,8 @@ module.exports = {
     'no-restricted-syntax': 'off', // 关闭禁用for-in for-of的规则
     'no-param-reassign': ['error', { props: false }], // 关闭禁止直接修改函数的入参
     'no-underscore-dangle': 'off', // 关闭不允许下划线做前缀
-    // 对象强制解构、数组不强制
-    'prefer-destructuring': [
-      'error',
-      {
-        VariableDeclarator: {
-          array: false,
-          object: true
-        },
-        AssignmentExpression: {
-          array: false,
-          object: false
-        }
-      },
-      {
-        enforceForRenamedProperties: false
-      }
-    ],
+    // 对象、数组不强制解构
+    'prefer-destructuring': 'off',
 
     /* another */
     'import/prefer-default-export': 'off', // 关闭推荐export default

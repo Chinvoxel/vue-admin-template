@@ -4,7 +4,7 @@
       <i-ep-edit />
     </el-icon>
 
-    <i-ep-MoreFilled />
+    <i-ep-MoreFilled @click="handle" />
   </el-row>
 </template>
 

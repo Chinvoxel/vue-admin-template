@@ -6,6 +6,7 @@ import 'nprogress/nprogress.css'
 import router from '@/router'
 import { getToken } from '@/utils/token'
 import { useUserStore } from '@/store/user'
+import { handleNetworkError } from './interceptor'
 
 // NProgress 配置
 NProgress.configure({
@@ -36,11 +37,13 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   res => {
     NProgress.done()
-    // 获取状态码
-    const { status } = res
     const message = res.data.message || '未知错误'
+    const code = res.data.code // 获取状态码
+
+    if (res.status !== 200) return Promise.reject(res.data)
+
     // 如果是401则跳转到登录页面
-    if (status === 401) {
+    if (code === 401) {
       ElMessage.error('当前登录已失效，请重新登录')
       const store = useUserStore()
       store.FedLogout().then(() => {
@@ -53,7 +56,7 @@ instance.interceptors.response.use(
       })
     }
     // 状态码非200则弹窗提示
-    if (status !== 200) {
+    if (code !== 200) {
       // 解决连续弹出警告框的问题
       if (!window._$messageInstance || !window._$messageInstance.visible) {
         window._$messageInstance = ElMessage({
@@ -71,7 +74,13 @@ instance.interceptors.response.use(
   },
   err => {
     NProgress.done()
-    return Promise.reject(new Error(err))
+    if (!window.navigator.onLine) {
+      ElMessage.error('无网络连接,请检查当前网络是否正常')
+    } else {
+      handleNetworkError(err.response.status)
+    }
+
+    return Promise.reject()
   }
 )
 

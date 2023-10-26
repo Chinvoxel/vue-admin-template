@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import ElementPlus from 'unplugin-element-plus/vite'
 // icon
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -26,6 +27,11 @@ export default ({ mode }) => {
           ElementPlusResolver()
         ]
       }),
+      // Element-UI 样式自动导入
+      ElementPlus({
+        importStyle: 'sass',
+        useSource: true
+      }),
       // 自动导入并注册 Vue 组件插件
       Components({
         resolvers: [
@@ -47,7 +53,7 @@ export default ({ mode }) => {
         '@': path.resolve(__dirname, 'src'),
         '@img': path.resolve(__dirname, 'src/assets/images/')
       },
-      extensions: ['.js', '.ts', '.mjs', '.jsx', '.tsx', '.json', '.vue', '.scss', '.sass'] // 文件后缀拓展
+      extensions: ['.js', '.ts', '.mjs', '.jsx', '.tsx', '.json', '.vue'] // 文件后缀拓展
     },
 
     css: {
