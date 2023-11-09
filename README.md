@@ -9,21 +9,6 @@ vue-scoped-css 插件 确保 scoped 样式的正确使用
 ## 项目功能
 
 1. 封装vue 插件管理项目enum枚举
-2. Element Plus Icon图标自动引入
-
-使用方法：
-
-```html
-<el-icon size="20">
-  <i-ep-add-location />
-</el-icon>
-```
-
-或
-
-```html
-<i-ep-add-location />
-```
 
 ## 项目架构
 

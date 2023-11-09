@@ -43,6 +43,7 @@ module.exports = {
     'vue-scoped-css/require-scoped': 'error', // 确保 scoped 样式的正确使用
 
     /* JS */
+    'no-use-before-define': 'off', // vue项目允许先定义方法后使用
     'no-console': 'off', // 打印警告
     'no-restricted-syntax': 'off', // 关闭禁用for-in for-of的规则
     'no-param-reassign': ['error', { props: false }], // 关闭禁止直接修改函数的入参

@@ -1,6 +1,7 @@
 import { ElMessage } from 'element-plus'
 
-export const handleNetworkError = status => {
+export const handleNetworkError = response => {
+  const { status, statusText } = response
   let errMessage = '未知错误'
   if (status) {
     switch (status) {
@@ -14,7 +15,7 @@ export const handleNetworkError = status => {
         errMessage = '请求错误,未找到该资源'
         break
       default:
-        errMessage = '未知错误'
+        errMessage = statusText
     }
   } else {
     errMessage = `无法连接到服务器！`

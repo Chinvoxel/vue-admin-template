@@ -77,7 +77,7 @@ instance.interceptors.response.use(
     if (!window.navigator.onLine) {
       ElMessage.error('无网络连接,请检查当前网络是否正常')
     } else {
-      handleNetworkError(err.response.status)
+      handleNetworkError(err.response)
     }
 
     return Promise.reject()

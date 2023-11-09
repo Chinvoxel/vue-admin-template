@@ -5,9 +5,6 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import ElementPlus from 'unplugin-element-plus/vite'
-// icon
-import Icons from 'unplugin-icons/vite'
-import IconsResolver from 'unplugin-icons/resolver'
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
@@ -20,12 +17,7 @@ export default ({ mode }) => {
       // 自动导入 JavaScript 模块插件
       AutoImport({
         imports: ['vue', 'vue-router', '@vueuse/core'],
-        resolvers: [
-          IconsResolver({
-            prefix: 'Icon'
-          }),
-          ElementPlusResolver()
-        ]
+        resolvers: [ElementPlusResolver()]
       }),
       // Element-UI 样式自动导入
       ElementPlus({
@@ -34,16 +26,7 @@ export default ({ mode }) => {
       }),
       // 自动导入并注册 Vue 组件插件
       Components({
-        resolvers: [
-          IconsResolver({
-            enabledCollections: ['ep'] // 自动导入 Element Plus 组件中使用的图标
-          }),
-          ElementPlusResolver()
-        ]
-      }),
-      Icons({
-        autoInstall: true,
-        compiler: 'vue3'
+        resolvers: [ElementPlusResolver()]
       })
     ],
 
@@ -59,7 +42,10 @@ export default ({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@use '${path.resolve(__dirname, 'src/styles/mixin.scss')}' as *;` // 全局scss mixin
+          additionalData: `
+          @use '${path.resolve(__dirname, 'src/styles/mixin.scss')}' as *;
+          @use "${path.resolve(__dirname, 'src/styles/variables.scss')}" as *;
+          ` // 全局scss mixin
         }
       }
     },
