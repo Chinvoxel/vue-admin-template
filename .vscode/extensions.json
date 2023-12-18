@@ -4,6 +4,7 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "streetsidesoftware.code-spell-checker",
-    "mrmlnc.vscode-autoprefixer"
+    "mrmlnc.vscode-autoprefixer",
+    "Vue.volar"
   ]
 }

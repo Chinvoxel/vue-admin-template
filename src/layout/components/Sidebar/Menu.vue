@@ -61,12 +61,10 @@ defineProps({
 
 const currentRoute = useRoute()
 
-const activeMenu = computed(() => {
-  return currentRoute.path
-})
-
+const activeMenu = computed(() => currentRoute.path)
 const formattedRoutes = computed(() => formatRoutes(currentRoutes))
 
+// 格式化路由
 const formatRoutes = routes => {
   const formatted = []
   routes.forEach(route => {
@@ -94,6 +92,7 @@ const resolvePath = (basePath, routePath) => {
 <style lang="scss" scoped>
 .all-menu-wrapper {
   .menu-icon {
+    flex-shrink: 0;
     width: 18px;
     height: 18px;
     margin-right: 16px;
@@ -105,10 +104,14 @@ const resolvePath = (basePath, routePath) => {
   border-right: none;
   :deep {
     .el-menu-item {
+      padding: 0 18px;
       color: $color-gray;
       background-color: #304156;
       &:hover {
         background-color: $menu-hover-background !important;
+      }
+      .el-menu-tooltip__trigger {
+        padding: 0 18px;
       }
     }
 
@@ -122,6 +125,7 @@ const resolvePath = (basePath, routePath) => {
     .el-sub-menu {
       background-color: $color-dark;
       .el-sub-menu__title {
+        padding: 0 18px;
         color: $color-gray;
         &:hover {
           background-color: $menu-hover-background !important;
@@ -140,15 +144,11 @@ const resolvePath = (basePath, routePath) => {
   }
 }
 
+/* 收缩菜单样式 */
 .all-menu-wrapper.no-expand-menu-wrapper {
   width: auto;
   .menu-icon {
     margin: 0;
-  }
-  :deep {
-    .el-sub-menu__title {
-      padding: 0;
-    }
   }
 }
 </style>

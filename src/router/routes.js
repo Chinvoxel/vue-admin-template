@@ -39,7 +39,6 @@ const constantRoutes = [
     },
     component: () => import('@/views/error-pages/404.vue')
   },
-
   {
     path: '/test',
     component: Layout,

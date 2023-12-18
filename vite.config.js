@@ -16,7 +16,7 @@ export default ({ mode }) => {
       vue(),
       // 自动导入 JavaScript 模块插件
       AutoImport({
-        imports: ['vue', 'vue-router', '@vueuse/core'],
+        imports: ['vue', 'vue-router', 'vue-i18n', '@vueuse/head', '@vueuse/core'],
         resolvers: [ElementPlusResolver()]
       }),
       // Element-UI 样式自动导入
@@ -41,11 +41,12 @@ export default ({ mode }) => {
 
     css: {
       preprocessorOptions: {
+        // 全局scss mixin
         scss: {
           additionalData: `
           @use '${path.resolve(__dirname, 'src/styles/mixin.scss')}' as *;
           @use "${path.resolve(__dirname, 'src/styles/variables.scss')}" as *;
-          ` // 全局scss mixin
+          `
         }
       }
     },

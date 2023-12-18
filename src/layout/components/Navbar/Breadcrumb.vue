@@ -2,7 +2,7 @@
   <el-breadcrumb class="breadcrumb-container" separator="/">
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="item.path">
-        <span v-if="item.redirect === 'noRedirect' || index == breadcrumbList.length - 1" class="no-redirect">
+        <span v-if="index === breadcrumbList.length - 1" class="no-redirect">
           {{ item.meta.title }}
         </span>
 
@@ -13,20 +13,24 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
-const route = useRoute()
+const activeRoute = useRoute()
 const breadcrumbList = ref([])
 
+// 获取面包屑导航数据
 const getBreadcrumb = () => {
-  let matched = route.matched.filter(item => item.meta && item.meta.title) || []
-  // console.log('matched: ', matched)
-  // const first = matched[0]
+  let matched = activeRoute.matched.filter(item => item.meta && item.meta.title) || [] // 过滤出具有元信息和标题的路由匹配项
+  const first = matched[0] // 取第一个匹配项
 
-  // if (isDashboard(first)) {
-  //   matched = [{ path: '/home', meta: { title: 'home' } }].concat(matched)
-  // }
+  // 如果第一个匹配项不是仪表盘页面
+  if (!isDashboard(first)) {
+    // 在匹配项数组前添加一个“首页”路由项
+    matched = [{ path: '/home/index', meta: { title: '首页' } }].concat(matched)
+  }
+
+  // 将符合条件的匹配项过滤为只包含元信息、标题并且 breadcrumb 不等于 false 的项
   breadcrumbList.value = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
 }
 
@@ -36,7 +40,17 @@ const isDashboard = route => {
   return name.trim().toLocaleLowerCase() === 'home'.toLocaleLowerCase()
 }
 
-getBreadcrumb()
+const handleLink = item => {
+  console.log('item: ', item)
+}
+
+watch(
+  activeRoute,
+  () => {
+    getBreadcrumb()
+  },
+  { immediate: true, deep: true }
+)
 </script>
 
 <style lang="scss" scoped>
