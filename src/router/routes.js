@@ -70,7 +70,7 @@ const constantRoutes = [
         name: 'Profile',
         meta: {
           title: '个人资料',
-          icon: 'dashboard'
+          icon: 'user'
         },
         component: () => import('@/views/test/index.vue')
       },
@@ -78,14 +78,12 @@ const constantRoutes = [
         path: 'settings',
         name: 'Settings',
         meta: {
-          title: '账户设置',
-          icon: 'dashboard'
+          title: '账户设置'
         },
         component: () => import('@/views/test/index.vue')
       }
     ]
   },
-
   {
     path: '/:pathMatch(.*)*',
     redirect: '/404',

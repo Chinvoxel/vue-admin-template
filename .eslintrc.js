@@ -13,7 +13,13 @@ module.exports = {
   },
 
   // 拓展
-  extends: ['plugin:import/recommended', 'plugin:vue/vue3-recommended', 'airbnb-base', 'plugin:prettier/recommended'],
+  extends: [
+    'plugin:import/recommended',
+    'plugin:vue/vue3-recommended',
+    'airbnb-base',
+    'plugin:prettier/recommended',
+    './.eslintrc-auto-import.json'
+  ],
   // 插件
   plugins: ['vue', 'vue-scoped-css', 'eslint-plugin-import'],
 
@@ -28,7 +34,8 @@ module.exports = {
       alias: {
         map: [
           ['@', './src'],
-          ['@img', './src/assets/images/']
+          ['@img', './src/assets/images/'],
+          ['@comps', './src/components']
         ],
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', '.scss']
       }

@@ -64,7 +64,7 @@ const currentRoute = useRoute()
 const activeMenu = computed(() => currentRoute.path)
 const formattedRoutes = computed(() => formatRoutes(currentRoutes))
 
-// 格式化路由
+// 格式化路由函数，过滤隐藏路由项
 const formatRoutes = routes => {
   const formatted = []
   routes.forEach(route => {
@@ -79,10 +79,12 @@ const formatRoutes = routes => {
   return formatted
 }
 
+// 判断是否只有一个子路由
 const hasSingleChild = route => {
   return route.children && route.children.length === 1
 }
 
+// 解析并拼接基础路径和路由路径，生成菜单链接
 const resolvePath = (basePath, routePath) => {
   if (basePath.endsWith('/')) return `${basePath}${routePath}`
   return `${basePath}/${routePath}`
@@ -135,6 +137,7 @@ const resolvePath = (basePath, routePath) => {
         color: #909399;
       }
       .nest-menu.el-menu-item {
+        padding: 0 45px;
         background-color: #1f2d3d !important;
         &:hover {
           background-color: #001528 !important;

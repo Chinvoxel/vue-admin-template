@@ -17,7 +17,11 @@ export default ({ mode }) => {
       // 自动导入 JavaScript 模块插件
       AutoImport({
         imports: ['vue', 'vue-router', 'vue-i18n', '@vueuse/head', '@vueuse/core'],
-        resolvers: [ElementPlusResolver()]
+        resolvers: [ElementPlusResolver()],
+        dts: true,
+        eslintrc: {
+          enabled: false
+        }
       }),
       // Element-UI 样式自动导入
       ElementPlus({
@@ -34,7 +38,8 @@ export default ({ mode }) => {
       // 别名
       alias: {
         '@': path.resolve(__dirname, 'src'),
-        '@img': path.resolve(__dirname, 'src/assets/images/')
+        '@img': path.resolve(__dirname, 'src/assets/images/'),
+        '@comps': path.resolve(__dirname, 'src/components/')
       },
       extensions: ['.js', '.ts', '.mjs', '.jsx', '.tsx', '.json', '.vue'] // 文件后缀拓展
     },
