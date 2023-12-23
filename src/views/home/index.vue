@@ -1,8 +1,11 @@
 <template>
-  <div></div>
-  <ElButton>2e1312</ElButton>
+  <ElButton>懂球帝</ElButton>
 </template>
 
 <script setup></script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.test {
+  color: $color-gray;
+}
+</style>

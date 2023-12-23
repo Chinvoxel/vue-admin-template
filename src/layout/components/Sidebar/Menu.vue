@@ -1,11 +1,12 @@
 <template>
   <el-menu
-    class="all-menu-wrapper"
-    :class="{ 'no-expand-menu-wrapper': collapse }"
+    class="custom-menu-container"
+    :class="{ 'no-expand-menu-container': collapse }"
     :default-active="activeMenu"
     :collapse="collapse"
     :collapse-transition="false"
     :router="true"
+    background-color="#304156"
     active-text-color="#409EFF"
     mode="vertical"
   >
@@ -48,8 +49,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 import currentRoutes from '@/router/routes'
 
 defineProps({
@@ -92,7 +91,23 @@ const resolvePath = (basePath, routePath) => {
 </script>
 
 <style lang="scss" scoped>
-.all-menu-wrapper {
+/* 折叠悬浮弹窗样式 */
+.el-popper {
+  .nest-menu.el-menu-item {
+    color: $color-gray;
+    /* 菜单图标样式 */
+    .menu-icon {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      margin-right: 16px;
+      color: $color-gray;
+    }
+  }
+}
+
+.custom-menu-container {
+  /* 菜单图标样式 */
   .menu-icon {
     flex-shrink: 0;
     width: 18px;
@@ -100,20 +115,28 @@ const resolvePath = (basePath, routePath) => {
     margin-right: 16px;
     color: $color-gray;
   }
+
+  /* 收缩菜单样式 */
+  &.no-expand-menu-container {
+    width: auto;
+    .menu-icon {
+      margin: 0;
+    }
+  }
 }
 
-.all-menu-wrapper.el-menu {
+.custom-menu-container.el-menu {
   border-right: none;
   :deep {
     .el-menu-item {
       padding: 0 18px;
       color: $color-gray;
-      background-color: #304156;
+      background-color: $menuBg;
       &:hover {
-        background-color: $menu-hover-background !important;
+        background-color: $menuHover !important;
       }
       .el-menu-tooltip__trigger {
-        padding: 0 18px;
+        padding: inherit;
       }
     }
 
@@ -130,7 +153,7 @@ const resolvePath = (basePath, routePath) => {
         padding: 0 18px;
         color: $color-gray;
         &:hover {
-          background-color: $menu-hover-background !important;
+          background-color: $menuHover !important;
         }
       }
       .el-submenu__icon-arrow {
@@ -138,20 +161,12 @@ const resolvePath = (basePath, routePath) => {
       }
       .nest-menu.el-menu-item {
         padding: 0 45px;
-        background-color: #1f2d3d !important;
+        background-color: $subMenuBg !important;
         &:hover {
-          background-color: #001528 !important;
+          background-color: $subMenuHover !important;
         }
       }
     }
-  }
-}
-
-/* 收缩菜单样式 */
-.all-menu-wrapper.no-expand-menu-wrapper {
-  width: auto;
-  .menu-icon {
-    margin: 0;
   }
 }
 </style>

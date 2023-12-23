@@ -22,9 +22,6 @@
 
 <script setup>
 import { useUserStore } from '@/store/user'
-import { ElMessage } from 'element-plus'
-import { computed, reactive, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
@@ -64,7 +61,7 @@ const handleSubmit = formEl => {
   justify-content: flex-end;
   align-items: center;
   height: 100vh;
-  background: url('../assets/images/login.png') no-repeat;
+  background: url('@/assets/images/login.png') no-repeat;
   background-size: contain;
   background-position: left;
   background-color: dimgray;

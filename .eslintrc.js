@@ -2,7 +2,8 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    node: true
+    node: true,
+    'vue/setup-compiler-macros': true
   },
 
   // 指定一个解析器
@@ -29,7 +30,7 @@ module.exports = {
     'import/resolver': {
       node: {
         moduleDirectory: ['node_modules', 'src'],
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', '.json', '.scss']
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', '.json']
       },
       alias: {
         map: [
@@ -37,7 +38,7 @@ module.exports = {
           ['@img', './src/assets/images/'],
           ['@comps', './src/components']
         ],
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', '.scss']
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue']
       }
     }
   },
@@ -57,8 +58,7 @@ module.exports = {
     'no-use-before-define': 'off', // vue项目允许先定义方法后使用
     'no-console': 'off', // 打印警告
     'no-restricted-syntax': 'off', // 关闭禁用for-in for-of的规则
-    // 'no-param-reassign': ['error', { props: false }], // 关闭禁止直接修改函数的入参
-    'no-param-reassign': 'error', // 禁止直接修改函数的入参
+    'no-param-reassign': ['error', { props: false }], // 禁止对入参直接赋值
     'no-underscore-dangle': 'off', // 关闭不允许下划线做前缀
     'prefer-destructuring': 'off', // 对象、数组不强制解构
 

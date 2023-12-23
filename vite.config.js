@@ -38,7 +38,7 @@ export default ({ mode }) => {
       // 别名
       alias: {
         '@': path.resolve(__dirname, 'src'),
-        '@img': path.resolve(__dirname, 'src/assets/images/'),
+        '@imgs': path.resolve(__dirname, 'src/assets/images/'),
         '@comps': path.resolve(__dirname, 'src/components/')
       },
       extensions: ['.js', '.ts', '.mjs', '.jsx', '.tsx', '.json', '.vue'] // 文件后缀拓展
@@ -46,7 +46,6 @@ export default ({ mode }) => {
 
     css: {
       preprocessorOptions: {
-        // 全局scss mixin
         scss: {
           additionalData: `
           @use '${path.resolve(__dirname, 'src/styles/mixin.scss')}' as *;

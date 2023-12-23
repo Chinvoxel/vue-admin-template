@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { ElMessage } from 'element-plus'
 import { Base64 } from 'js-base64'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -55,6 +54,7 @@ instance.interceptors.response.use(
         })
       })
     }
+
     // 状态码非200则弹窗提示
     if (code !== 200) {
       // 解决连续弹出警告框的问题
@@ -69,7 +69,6 @@ instance.interceptors.response.use(
       }
       return Promise.reject(new Error(message))
     }
-
     return res.data
   },
   err => {

@@ -8,7 +8,6 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
 import { useGetters } from '@/store/getter'
 import AppLogo from './Logo.vue'
 import AppMenu from './Menu.vue'

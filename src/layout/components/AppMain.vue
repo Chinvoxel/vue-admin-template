@@ -15,4 +15,10 @@
 
 <script setup></script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.app-main {
+  width: 100%;
+  padding: 20px;
+  overflow: hidden;
+}
+</style>

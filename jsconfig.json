@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@img/*": ["src/assets/images/*"],
+      "@imgs/*": ["src/assets/images/*"],
       "@comps/*": ["src/components/*"]
     },
     "target": "ESNext",
@@ -11,6 +11,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
     "types": ["element-plus/global", "./auto-imports.d.ts"] // 智能提示
   },
   "exclude": ["node_modules", "dist"],
