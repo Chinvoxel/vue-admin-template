@@ -1,22 +1,30 @@
 <template>
-  <div class="login-container">
-    <el-card class="login-card">
-      <h3 class="title">用户登录</h3>
+  <div class="wrapper">
+    <div class="login-container">
+      <div class="login-form">
+        <h2 class="title">用户登录</h2>
 
-      <el-form ref="ruleFormRef" :model="form" :rules="rules" label-width="80px" class="form">
-        <el-form-item label="账号" prop="phone">
-          <el-input v-model.trim="form.phone" placeholder="请输入账号"></el-input>
-        </el-form-item>
+        <el-form ref="ruleFormRef" :model="form" :rules="rules" label-width="80px">
+          <el-form-item class="mb-6" label="账号" prop="phone">
+            <el-input class="form-input" v-model.trim="form.phone" placeholder="请输入账号"></el-input>
+          </el-form-item>
 
-        <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model.trim="form.password" placeholder="请输入密码"></el-input>
-        </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input
+              class="form-input"
+              v-model.trim="form.password"
+              type="password"
+              show-password
+              placeholder="请输入密码"
+            />
+          </el-form-item>
 
-        <el-form-item class="btn-group">
-          <el-button type="primary" class="btn-submit" @click="handleSubmit(ruleFormRef)">登录</el-button>
-        </el-form-item>
-      </el-form>
-    </el-card>
+          <el-form-item class="btn-group">
+            <el-button type="primary" class="btn-submit" @click="handleSubmit(ruleFormRef)">登录</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -38,8 +46,8 @@ const form = reactive({
 })
 
 const rules = {
-  phone: [{ required: true, message: '请输入账号', trigger: 'blur' }],
-  password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+  phone: [{ min: 1, max: 20, message: '请输入账号', trigger: 'blur' }],
+  password: [{ min: 1, max: 20, message: '请输入密码', trigger: 'blur' }]
 }
 
 const handleSubmit = formEl => {
@@ -56,30 +64,47 @@ const handleSubmit = formEl => {
 </script>
 
 <style lang="scss" scoped>
-.login-container {
+.wrapper {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
+  width: 100vw;
   height: 100vh;
-  background: url('@/assets/images/login.png') no-repeat;
-  background-size: contain;
-  background-position: left;
-  background-color: dimgray;
-  .login-card {
-    margin-right: 300px;
-    width: 400px;
-    padding: 20px;
-    .title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    .form {
-      margin-top: 10px;
-    }
-    .btn-group {
-      text-align: right;
-      margin-top: 20px;
+  overflow-y: auto;
+  background: #03a9f4;
+  .login-container {
+    display: flex;
+    justify-content: flex-end;
+    min-width: 1000px;
+    height: 600px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    background-image: url('@/assets/images/login.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    .login-form {
+      width: 400px;
+      .title {
+        margin-bottom: 40px;
+        text-align: center;
+        font-weight: bold;
+      }
+      .mb-6 {
+        margin-bottom: 24px;
+      }
+      .form-input {
+        @include autofill(white);
+      }
+      .btn-group {
+        text-align: right;
+        margin-top: 20px;
+        .btn-submit {
+          height: 36px;
+          width: 100%;
+        }
+      }
     }
   }
 }
