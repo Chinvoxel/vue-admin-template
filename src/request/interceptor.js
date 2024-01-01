@@ -1,5 +1,6 @@
 export const handleNetworkError = response => {
   const { status, statusText } = response
+
   let errMessage = '未知错误'
   if (status) {
     switch (status) {

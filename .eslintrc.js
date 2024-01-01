@@ -36,7 +36,7 @@ module.exports = {
       alias: {
         map: [
           ['@', './src'],
-          ['@img', './src/assets/images/'],
+          ['@imgs', './src/assets/images'],
           ['@comps', './src/components']
         ],
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue']

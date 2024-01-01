@@ -21,8 +21,9 @@ const constantRoutes = [
     ]
   },
   {
-    path: '/login/:redirect?',
+    path: '/login/:redirect',
     name: 'Login',
+    props: true,
     hidden: true,
     meta: {
       title: '登录'

@@ -1,22 +1,30 @@
 <template>
   <div class="wrapper">
-    <div class="login-container">
+    <el-card class="login-card" shadow="always">
+      <el-image class="img-login" :src="loginImg" fit="contain" />
+
       <div class="login-form">
         <h2 class="title">用户登录</h2>
 
-        <el-form ref="ruleFormRef" :model="form" :rules="rules" label-width="80px">
-          <el-form-item class="mb-6" label="账号" prop="phone">
-            <el-input class="form-input" v-model.trim="form.phone" placeholder="请输入账号"></el-input>
+        <el-form ref="ruleFormRef" :model="form" :rules="rules" :hide-required-asterisk="true">
+          <el-form-item class="mb-6" prop="phone">
+            <el-input class="form-input" v-model="form.phone" placeholder="请输入账号">
+              <template #prefix>
+                <div class="icon">
+                  <Message style="width: 15px; height: 15px; color: 8aa7ca" />
+                </div>
+              </template>
+            </el-input>
           </el-form-item>
 
-          <el-form-item label="密码" prop="password">
-            <el-input
-              class="form-input"
-              v-model.trim="form.password"
-              type="password"
-              show-password
-              placeholder="请输入密码"
-            />
+          <el-form-item prop="password">
+            <el-input class="form-input" v-model="form.password" type="password" show-password placeholder="请输入密码">
+              <template #prefix>
+                <div class="icon">
+                  <Lock style="width: 15px; height: 15px; color: 8aa7ca" />
+                </div>
+              </template>
+            </el-input>
           </el-form-item>
 
           <el-form-item class="btn-group">
@@ -24,20 +32,25 @@
           </el-form-item>
         </el-form>
       </div>
-    </div>
+    </el-card>
   </div>
 </template>
 
 <script setup>
 import { useUserStore } from '@/store/user'
+import loginImg from '@imgs/login.png'
 
 const router = useRouter()
-const route = useRoute()
 const store = useUserStore()
 
-const toRoutePath = computed(() => {
-  return route.params?.redirect || '/'
+const props = defineProps({
+  redirect: {
+    type: String,
+    default: ''
+  }
 })
+
+const toRoutePath = computed(() => props?.redirect || '/')
 
 const ruleFormRef = ref(null)
 const form = reactive({
@@ -45,10 +58,10 @@ const form = reactive({
   password: ''
 })
 
-const rules = {
-  phone: [{ min: 1, max: 20, message: '请输入账号', trigger: 'blur' }],
-  password: [{ min: 1, max: 20, message: '请输入密码', trigger: 'blur' }]
-}
+const rules = ref({
+  phone: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+  password: [{ required: true, max: 20, message: '请输入密码', trigger: 'blur' }]
+})
 
 const handleSubmit = formEl => {
   if (!formEl) return
@@ -72,34 +85,74 @@ const handleSubmit = formEl => {
   height: 100vh;
   overflow-y: auto;
   background: #03a9f4;
-  .login-container {
-    display: flex;
-    justify-content: flex-end;
-    min-width: 1000px;
-    height: 600px;
-    padding: 30px;
-    border-radius: 10px;
-    background-color: #ffffff;
-    background-image: url('@/assets/images/login.png');
-    background-size: contain;
-    background-repeat: no-repeat;
+  .login-card {
+    width: 900px;
+    height: 500px;
+    border: none;
+    border-radius: 15px;
+    :deep(.el-card__body) {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      background-color: #e0edfd;
+      overflow: hidden;
+    }
 
+    .img-login {
+      width: 60%;
+    }
     .login-form {
-      width: 400px;
+      width: 40%;
+      padding: 20px;
+      border-radius: 15px;
+      background-color: #ffffff;
       .title {
-        margin-bottom: 40px;
-        text-align: center;
+        margin: 40px 0;
         font-weight: bold;
       }
       .mb-6 {
         margin-bottom: 24px;
       }
       .form-input {
-        @include autofill(white);
+        @include autofill(#f5f5f5);
+        border-radius: 6px;
+        background: #f5f5f5;
+        :deep(.el-input__wrapper) {
+          padding: 0 8px 0 0;
+          height: 36px;
+          border-radius: inherit;
+          background: inherit;
+
+          .el-input__prefix-inner {
+            .icon {
+              @include flex(center);
+              padding: 4px 4px;
+              border-radius: 2px;
+              background: #ffffff;
+            }
+
+            & > :first-child {
+              margin-left: 8px;
+            }
+          }
+
+          .el-input__inner {
+            padding-left: 0;
+            background: inherit;
+            box-shadow: none;
+            border: none;
+
+            &::placeholder {
+              font-size: 14px;
+            }
+          }
+        }
       }
+
       .btn-group {
         text-align: right;
-        margin-top: 20px;
+        margin-top: 40px;
         .btn-submit {
           height: 36px;
           width: 100%;

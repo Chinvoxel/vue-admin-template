@@ -57,8 +57,8 @@ export default ({ mode }) => {
       // 别名
       alias: {
         '@': path.resolve(__dirname, 'src'),
-        '@imgs': path.resolve(__dirname, 'src/assets/images/'),
-        '@comps': path.resolve(__dirname, 'src/components/')
+        '@imgs': path.resolve(__dirname, 'src/assets/images'),
+        '@comps': path.resolve(__dirname, 'src/components')
       },
       extensions: ['.js', '.ts', '.mjs', '.jsx', '.tsx', '.json', '.vue'] // 文件后缀拓展
     },

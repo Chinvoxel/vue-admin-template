@@ -5,8 +5,9 @@ import { loginByPhone, logout } from '@/api/login'
 
 export const useUserStore = defineStore('User', {
   state: () => ({
-    token: getToken()
+    token: getToken() || ''
   }),
+
   actions: {
     LoginByPhone({ phone, password }) {
       return new Promise((resolve, reject) => {

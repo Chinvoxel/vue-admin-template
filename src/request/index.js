@@ -37,18 +37,19 @@ instance.interceptors.response.use(
   res => {
     NProgress.done()
     const message = res.data.message || '未知错误'
-    const code = res.data.code // 获取状态码
+    const code = res.data.code // 获取后端自定义状态码
 
     if (res.status !== 200) return Promise.reject(res.data)
 
     // 如果是401则跳转到登录页面
     if (code === 401) {
       ElMessage.error('当前登录已失效，请重新登录')
+
       const store = useUserStore()
       store.FedLogout().then(() => {
         router.replace({
           name: 'Login',
-          query: {
+          params: {
             redirect: router.currentRoute.fullPath
           }
         })
@@ -73,12 +74,12 @@ instance.interceptors.response.use(
   },
   err => {
     NProgress.done()
+    // 检测网络环境
     if (!window.navigator.onLine) {
       ElMessage.error('无网络连接,请检查当前网络是否正常')
     } else {
       handleNetworkError(err.response)
     }
-
     return Promise.reject()
   }
 )
