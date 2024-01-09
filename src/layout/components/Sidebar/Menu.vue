@@ -21,7 +21,7 @@
       </template>
 
       <!-- 渲染包含多子路由的菜单 -->
-      <el-sub-menu v-else-if="route.children" :index="route.path" :key="route.path">
+      <el-sub-menu v-else-if="route.children" popper-class="custom-popper" :index="route.path" :key="route.path">
         <template #title>
           <component :is="route.meta.icon" class="menu-icon"></component>
           <span>{{ route.meta.title }}</span>
@@ -63,9 +63,10 @@ const currentRoute = useRoute()
 const activeMenu = computed(() => currentRoute.path)
 const formattedRoutes = computed(() => formatRoutes(currentRoutes))
 
-// 格式化路由函数，过滤隐藏路由项
+// 格式化路由函数
 const formatRoutes = routes => {
   const formatted = []
+  // 过滤隐藏路由项
   routes.forEach(route => {
     if (!route.hidden) {
       const formattedRoute = {
@@ -92,7 +93,7 @@ const resolvePath = (basePath, routePath) => {
 
 <style lang="scss" scoped>
 /* 折叠悬浮弹窗样式 */
-.el-popper {
+.custom-popper {
   .nest-menu.el-menu-item {
     color: $color-gray;
     /* 菜单图标样式 */
@@ -105,7 +106,6 @@ const resolvePath = (basePath, routePath) => {
     }
   }
 }
-
 .custom-menu-container {
   /* 菜单图标样式 */
   .menu-icon {

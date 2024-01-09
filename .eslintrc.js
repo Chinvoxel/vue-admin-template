@@ -89,10 +89,8 @@ module.exports = {
       {
         js: 'never',
         jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
         vue: 'always',
-        scss: 'always'
+        less: 'always'
       }
     ]
   }
