@@ -1,5 +1,5 @@
-import { Storage } from '@/utils/storage'
 import { defineStore } from 'pinia'
+import { Storage } from '@/utils/storage'
 
 export const useAppStore = defineStore('app', {
   state: () => ({
