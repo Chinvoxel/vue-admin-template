@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
       "@imgs/*": ["src/assets/images/*"],
@@ -11,9 +11,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "types": ["element-plus/global", "./auto-imports.d.ts"] // 智能提示
+    "lib": ["esnext", "dom"]
+    // "types": ["element-plus/global", "./auto-imports.d.ts"] //
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "./components.d.ts", "./auto-imports.d.ts"]
 }

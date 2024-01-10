@@ -1,6 +1,7 @@
 import Layout from '@/layout/index.vue'
 import Home from '@/views/home/index.vue'
 import Login from '@/views/login/index.vue'
+import i18n from '@/lang'
 
 // 无需权限的页面
 const constantRoutes = [
@@ -13,7 +14,7 @@ const constantRoutes = [
         path: 'home/index',
         name: 'Home',
         meta: {
-          title: '首页',
+          title: i18n.global.t('route.home'),
           icon: 'House'
         },
         component: Home
@@ -26,7 +27,7 @@ const constantRoutes = [
     props: true,
     hidden: true,
     meta: {
-      title: '登录'
+      title: i18n.global.t('route.login')
     },
     component: Login
   },
@@ -49,7 +50,7 @@ const constantRoutes = [
         path: 'index',
         name: 'test',
         meta: {
-          title: '测试页',
+          title: i18n.global.t('route.test'),
           icon: 'guide',
           noCache: true
         },
@@ -62,7 +63,7 @@ const constantRoutes = [
     component: Layout,
     redirect: '/user/profile',
     meta: {
-      title: '个人中心',
+      title: i18n.global.t('route.user'),
       icon: 'user'
     },
     children: [
@@ -70,8 +71,7 @@ const constantRoutes = [
         path: 'profile',
         name: 'Profile',
         meta: {
-          title: '个人资料',
-          icon: 'user'
+          title: i18n.global.t('route.profile')
         },
         component: () => import('@/views/test/index.vue')
       },
@@ -79,7 +79,7 @@ const constantRoutes = [
         path: 'settings',
         name: 'Settings',
         meta: {
-          title: '账户设置'
+          title: i18n.global.t('route.accountSetting')
         },
         component: () => import('@/views/test/index.vue')
       }

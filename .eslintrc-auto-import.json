@@ -137,6 +137,7 @@
     "useBrowserLocation": true,
     "useCached": true,
     "useClipboard": true,
+    "useClipboardItems": true,
     "useCloned": true,
     "useColorMode": true,
     "useConfirmDialog": true,
@@ -292,6 +293,8 @@
     "watchWithFilter": true,
     "whenever": true,
     "ElMessage": true,
-    "ElMessageBox": true
+    "ElNotification": true,
+    "ElMessageBox": true,
+    "ElLoading": true
   }
 }

@@ -16,10 +16,7 @@ import AppMain from './components/AppMain.vue'
 import Sidebar from './components/Sidebar/index.vue'
 
 const Getter = useGetters()
-
-const sideBarWidth = computed(() => {
-  return Getter.sidebar.collapsed ? '54px' : '210px'
-})
+const sideBarWidth = computed(() => (Getter.collapsed ? '54px' : '210px'))
 </script>
 
 <style lang="scss" scoped>

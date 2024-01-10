@@ -1,17 +1,25 @@
 import { defineStore } from 'pinia'
 import { Storage } from '@/utils/storage'
+import { getLanguage } from '@/lang'
 
-export const useAppStore = defineStore('app', {
+export const useAppStore = defineStore({
+  id: 'app',
   state: () => ({
-    sidebar: {
-      collapsed: Storage.get('collapsed') || false
-    }
+    collapsed: Storage.get('collapsed') || false,
+    language: getLanguage() || 'zh'
   }),
+
   actions: {
     TOGGLE_SIDEBAR() {
-      const { sidebar } = this
-      sidebar.collapsed = !sidebar.collapsed
-      Storage.set('collapsed', sidebar.collapsed)
+      this.collapsed = !this.collapsed
+      Storage.set('collapsed', this.collapsed)
+    },
+
+    SET_LANGUAGE(language) {
+      this.language = language
+      Storage.set('language', language)
+      // 刷新页面更新视图
+      window.location.reload()
     }
   }
 })

@@ -10,8 +10,10 @@ import router from '@/router'
 import '@/router/interceptor'
 // 错误日志
 import errorHandler from '@/error'
-// 全局css
+// 全局scss
 import './styles/index.scss'
+// 国际化
+import i18n from './lang'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -24,6 +26,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.config.performance = true // 性能分析
 
 app.use(errorHandler)
+app.use(i18n)
 app.use(EnumPlugin)
 app.use(router)
 app.use(pinia)

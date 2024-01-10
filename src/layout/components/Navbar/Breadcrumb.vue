@@ -15,6 +15,8 @@
 <script setup>
 const router = useRouter()
 const activeRoute = useRoute()
+const { t } = useI18n()
+
 const breadcrumbList = ref([])
 
 // 获取面包屑导航数据
@@ -24,7 +26,7 @@ const getBreadcrumb = () => {
   // 如果第一个匹配项不是首页
   if (!isDashboard(first)) {
     // 在匹配项数组前添加一个“首页”路由项
-    matched = [{ path: '/home/index', meta: { title: '首页' } }].concat(matched)
+    matched = [{ path: '/home/index', meta: { title: t('route.home') } }].concat(matched)
   }
   // 将符合条件的匹配项过滤为只包含元信息、标题并且 breadcrumb 不等于 false 的项
   breadcrumbList.value = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)

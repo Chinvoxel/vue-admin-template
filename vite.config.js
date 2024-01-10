@@ -1,12 +1,13 @@
 import path from 'path'
 import { loadEnv, defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import viteCompression from 'vite-plugin-compression2'
+import visualizer from 'rollup-plugin-visualizer'
+// 自动导入
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import ElementPlus from 'unplugin-element-plus/vite'
-import viteCompression from 'vite-plugin-compression2'
-import visualizer from 'rollup-plugin-visualizer'
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
@@ -16,25 +17,27 @@ export default ({ mode }) => {
     base: env.VITE_APP_PUBLIC_PATH, // 开发或生产环境服务的公共基础路径
     plugins: [
       vue(),
-      // 自动导入 JavaScript 模块插件
+      // API自动引入
       AutoImport({
         imports: ['vue', 'vue-router', 'vue-i18n', '@vueuse/head', '@vueuse/core'],
         resolvers: [ElementPlusResolver()],
         dts: true,
         eslintrc: {
-          enabled: false
+          enabled: true
         }
+      }),
+
+      // 组件自动引入
+      Components({
+        dirs: [],
+        dts: true,
+        resolvers: [ElementPlusResolver()]
       }),
 
       // Element-UI 样式自动导入
       ElementPlus({
         importStyle: 'sass',
         useSource: true
-      }),
-
-      // 自动导入并注册 Vue 组件插件
-      Components({
-        resolvers: [ElementPlusResolver()]
       }),
 
       // 压缩
@@ -60,7 +63,7 @@ export default ({ mode }) => {
         '@imgs': path.resolve(__dirname, 'src/assets/images'),
         '@comps': path.resolve(__dirname, 'src/components')
       },
-      extensions: ['.js', '.ts', '.mjs', '.jsx', '.tsx', '.json', '.vue'] // 文件后缀拓展
+      extensions: ['.js', '.json', '.vue', '.ts', '.mjs', '.jsx'] // 文件后缀拓展
     },
 
     css: {
@@ -72,12 +75,6 @@ export default ({ mode }) => {
           `
         }
       }
-    },
-
-    optimizeDeps: {
-      include: [], // 预加载
-      exclude: ['vue'], // 排除 vue 模块的优化
-      entries: ['vue'] // 将 vue 打包为单独的块
     },
 
     // 打包

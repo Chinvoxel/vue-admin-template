@@ -3,7 +3,8 @@ import CryptoJS from 'crypto-js'
 import { getToken, removeRefreshToken, removeToken, setToken } from '@/utils/token'
 import { loginByPhone, logout } from '@/api/login'
 
-export const useUserStore = defineStore('User', {
+export const useUserStore = defineStore({
+  id: 'user',
   state: () => ({
     token: getToken() || ''
   }),
